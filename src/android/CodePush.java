@@ -41,7 +41,7 @@ public class CodePush extends CordovaPlugin {
     private static final String DEPLOYMENT_KEY_PREFERENCE = "codepushdeploymentkey";
     private static final String PUBLIC_KEY_PREFERENCE = "codepushpublickey";
     private static final String SERVER_URL_PREFERENCE = "codepushserverurl";
-    private static final String WWW_ASSET_PATH_PREFIX = "file:///android_asset/www/";
+    private static final String WWW_ASSET_PATH_PREFIX = "file:///android_asset/public/";
     private static final String NEW_LINE = System.getProperty("line.separator");
     private static boolean ShouldClearHistoryOnLoad = false;
     private CordovaWebView mainWebView;
@@ -213,7 +213,7 @@ public class CodePush extends CordovaPlugin {
             @Override
             protected Void doInBackground(Void... params) {
                 try {
-                    String binaryHash = UpdateHashUtils.getHashForPath(cordova.getActivity(), args.getString(0) + "/www");
+                    String binaryHash = UpdateHashUtils.getHashForPath(cordova.getActivity(), args.getString(0) + "/public");
                     callbackContext.success(binaryHash);
                 } catch (Exception e) {
                     callbackContext.error("An error occurred when trying to get the hash of the binary contents. " + e.getMessage());
@@ -544,7 +544,7 @@ public class CodePush extends CordovaPlugin {
 
     private File getStartPageForPackage(String packageLocation) {
         if (packageLocation != null) {
-            File startPage = new File(this.cordova.getActivity().getFilesDir() + packageLocation, "www/" + getConfigStartPageName());
+            File startPage = new File(this.cordova.getActivity().getFilesDir() + packageLocation, "public/" + getConfigStartPageName());
             if (startPage.exists()) {
                 return startPage;
             }

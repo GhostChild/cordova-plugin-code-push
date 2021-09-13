@@ -203,7 +203,7 @@ class LocalPackage extends Package implements ILocalPackage {
     private getSignatureFromUpdate(deployDir: DirectoryEntry, callback: Callback<string>) {
 
         var rootUri = cordova.file.dataDirectory;
-        var path = deployDir.fullPath + "/www";
+        var path = deployDir.fullPath + "/public";
         var fileName = ".codepushrelease";
 
         FileUtil.fileExists(rootUri, path, fileName, (error, result) => {
@@ -395,9 +395,9 @@ class LocalPackage extends Package implements ILocalPackage {
                 };
             } else {
                 // The binary's version is the latest
-                newPackageLocation = newPackageLocation + "/www";
+                newPackageLocation = newPackageLocation + "/public";
                 getCurrentPackageDirectory = (getCurrentPackageDirectoryCallback: Callback<DirectoryEntry>) => {
-                    FileUtil.getApplicationDirectory("www", getCurrentPackageDirectoryCallback);
+                    FileUtil.getApplicationDirectory("public", getCurrentPackageDirectoryCallback);
                 };
             }
 

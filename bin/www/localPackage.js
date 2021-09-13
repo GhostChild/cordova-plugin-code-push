@@ -162,7 +162,7 @@ var LocalPackage = (function (_super) {
     };
     LocalPackage.prototype.getSignatureFromUpdate = function (deployDir, callback) {
         var rootUri = cordova.file.dataDirectory;
-        var path = deployDir.fullPath + "/www";
+        var path = deployDir.fullPath + "/public";
         var fileName = ".codepushrelease";
         FileUtil.fileExists(rootUri, path, fileName, function (error, result) {
             if (!result) {
@@ -329,9 +329,9 @@ var LocalPackage = (function (_super) {
                 };
             }
             else {
-                newPackageLocation = newPackageLocation + "/www";
+                newPackageLocation = newPackageLocation + "/public";
                 getCurrentPackageDirectory = function (getCurrentPackageDirectoryCallback) {
-                    FileUtil.getApplicationDirectory("www", getCurrentPackageDirectoryCallback);
+                    FileUtil.getApplicationDirectory("public", getCurrentPackageDirectoryCallback);
                 };
             }
             FileUtil.getDataDirectory(newPackageLocation, true, function (deployDirError, deployDir) {
